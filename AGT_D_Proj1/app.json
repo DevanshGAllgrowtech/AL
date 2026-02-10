@@ -1,10 +1,10 @@
 {
   "id": "468c83d1-bffe-4883-bed9-d125183300c4",
   "name": "Item_List_Greeting_Extension",
-  "publisher": "Devansh",
-  "version": "1.0.0.3",
-  "brief": "",
-  "description": "",
+  "publisher": "AGT_DG",
+  "version": "1.0.0.4",
+  "brief": "Item List Greeting Message, 2 Custom Tables and 1 Custom Page",
+  "description": "This extension contains 2 custom tables => CustomTask and CustomCustomer and 1 Custom Page => 'Task Page'",
   "privacyStatement": "",
   "EULA": "",
   "help": "",
@@ -16,8 +16,8 @@
   "application": "27.0.0.0",
   "idRanges": [
     {
-      "from": 50100,
-      "to": 50149
+      "from": 70100,
+      "to": 70149
     }
   ],
   "resourceExposurePolicy": {

@@ -6,7 +6,7 @@ namespace DefaultPublisher.AGT_D_Proj1;
 
 using Microsoft.Inventory.Item;
 
-pageextension 50111 ItemListExt extends "Item List"
+pageextension 70111 ItemListExt extends "Item List"
 {
     trigger OnOpenPage();
     begin
