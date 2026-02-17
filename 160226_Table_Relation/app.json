@@ -1,0 +1,32 @@
+{
+  "id": "192cb353-d785-4066-b377-798b1ba24b2d",
+  "name": "160226_Table_Relation",
+  "publisher": "AGT DG",
+  "version": "1.0.0.0",
+  "brief": "",
+  "description": "",
+  "privacyStatement": "",
+  "EULA": "",
+  "help": "",
+  "url": "",
+  "logo": "",
+  "dependencies": [],
+  "screenshots": [],
+  "platform": "1.0.0.1",
+  "application": "26.0.0.0",
+  "idRanges": [
+    {
+      "from": 70100,
+      "to": 70149
+    }
+  ],
+  "resourceExposurePolicy": {
+    "allowDebugging": true,
+    "allowDownloadingSource": false,
+    "includeSourceInSymbolFile": true
+  },
+  "runtime": "15.0",
+  "features": [
+    "NoImplicitWith"
+  ]
+}
