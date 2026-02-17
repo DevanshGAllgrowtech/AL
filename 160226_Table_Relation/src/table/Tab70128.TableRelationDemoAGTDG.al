@@ -9,6 +9,14 @@ table 70128 "Table Relation Demo AGT_DG"
             DataClassification = ToBeClassified;
             Caption = 'Customer No.';
             TableRelation = Customer;
+            // trigger OnValidate()
+            // var
+            //     getCustomerRecord: Record Customer;
+            // begin
+            //     if getCustomerRecord.GET("No.") then begin
+            //         "Customer Name" := getCustomerRecord.Name;
+            //     end
+            // end;
         }
         field(2; "Customer Name"; Text[100])
         {
