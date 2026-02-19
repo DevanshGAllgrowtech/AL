@@ -18,7 +18,6 @@ table 70129 "Student Table AGT_DG"
         {
             DataClassification = ToBeClassified;
             Caption = 'Student Age';
-            Editable = false;
         }
         field(4; "Status"; Boolean)
         {
@@ -32,16 +31,19 @@ table 70129 "Student Table AGT_DG"
             trigger OnValidate()
             var
                 getCurrentDate: Date;
-                getCurrentDateTime: DateTime;
-            begin
+                presentStudentAge, minimumStudentAge : Integer;
 
-                getCurrentDate := getCurrentDateTime.Date();
-                if (Rec.DOB = getCurrentDate) or (Rec.DOB > getCurrentDate) then begin
-                    Error('Please enter correct DOB');
+            begin
+                minimumStudentAge := 5;
+                getCurrentDate := Today;
+                presentStudentAge := setStudentAge(DOB);
+
+                if (DOB = getCurrentDate) or (DOB > getCurrentDate) or (presentStudentAge < minimumStudentAge) then begin
+                    Error('Please enter age greater than or equal to 5 years');
                 end
                 else begin
                     setStudentStaus(Rec.Status);
-                    setStudentAge(Rec.DOB);
+                    Age := presentStudentAge;
                 end;
             end;
         }
@@ -101,26 +103,25 @@ table 70129 "Student Table AGT_DG"
 
     end;
 
-    procedure setStudentAge(DOB: Date)
+    procedure setStudentAge(DOB: Date): Integer
     var
         getCurrentDate: Date;
-        getCurrentDateTime: DateTime;
         getCurrentYear: Integer;
         calculateStudentAge: Integer;
     begin
-
+        getCurrentDate := Today;
         getCurrentYear := getCurrentDate.Year();
         calculateStudentAge := getCurrentYear - DOB.Year();
         if dob.Month() > getCurrentDate.Month() then begin
             calculateStudentAge -= 1;
-            Age := calculateStudentAge;
         end else
             if ((dob.Month() = getCurrentDate.Month()) or (dob.Month() = getCurrentDate.Month()))
                 and
                 ((dob.Day = getCurrentDate.Day) or (dob.Day < getCurrentDate.Day))
                 then begin
-                Age := calculateStudentAge;
+                exit(calculateStudentAge);
             end;
+        exit(calculateStudentAge);
     end;
 
     procedure setStudentStaus(Status: Boolean)
