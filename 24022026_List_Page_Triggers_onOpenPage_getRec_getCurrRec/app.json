@@ -1,0 +1,32 @@
+{
+  "id": "14d49891-af4f-4d8a-a732-06052f6539df",
+  "name": "24022026_List_Page_Triggers_onOpenPage_getRec_getCurrRec",
+  "publisher": "Default Publisher",
+  "version": "1.0.0.0",
+  "brief": "",
+  "description": "",
+  "privacyStatement": "",
+  "EULA": "",
+  "help": "",
+  "url": "",
+  "logo": "",
+  "dependencies": [],
+  "screenshots": [],
+  "platform": "1.0.0.0",
+  "application": "26.0.0.0",
+  "idRanges": [
+    {
+      "from": 50100,
+      "to": 50149
+    }
+  ],
+  "resourceExposurePolicy": {
+    "allowDebugging": true,
+    "allowDownloadingSource": true,
+    "includeSourceInSymbolFile": true
+  },
+  "runtime": "15.0",
+  "features": [
+    "NoImplicitWith"
+  ]
+}
