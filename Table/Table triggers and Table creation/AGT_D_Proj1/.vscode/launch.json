@@ -8,7 +8,7 @@
             "tenant": "527bb1a8-9158-41ca-a990-67c1d3ed38a4",
             "environmentType": "Sandbox",
             "environmentName": "TRAINING",
-            "startupObjectId": 22,
+            "startupObjectId": 70125,
             "startupObjectType": "Page",
             "breakOnError": "All",
             "launchBrowser": true,
