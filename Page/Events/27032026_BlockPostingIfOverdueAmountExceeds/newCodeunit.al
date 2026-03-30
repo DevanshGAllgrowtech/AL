@@ -1,5 +1,9 @@
 codeunit 70001 MyCodeunit
 {
+    // Task:
+    //     "1.There is a field called SalesPerson code on Sales Header, by defauly this comes from Customer card. 
+    // 2. When a new sales order is created  Then update the salesperson code on the sales Header with the salesperson code 
+    // which has the least no of orders+Invoices."
     [EventSubscriber(ObjectType::Table, Database::"Sales Header", OnBeforeInsertEvent, '', true, true)]
     local procedure MyProcedure(var Rec: Record "Sales Header")
     var
