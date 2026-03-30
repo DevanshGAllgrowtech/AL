@@ -18,7 +18,7 @@ pageextension 70001 "cstm pgextn AGt_DG" extends "Sales Order Subform"
                 ApplicationArea = all;
                 trigger OnValidate()
                 begin
-                    if (Rec."Temp Field AGT_DG" < Today) then begin
+                    if (Rec."Temp Field AGT_DG" < CalcDate('2D', Today)) then begin
                         Error('Date out of range');
                     end;
                 end;
