@@ -26,8 +26,9 @@ codeunit 70000 "Log Details in CT AGT_DG"
         // today
         CustomTableRec.Init();
         CustomTableRec."Click On Action Name" := clickedOn;
-        CustomTableRec."Clicked Date" := Today;
-        CustomTableRec."Clicked Time" := Time;
+        CustomTableRec."Clicked Date And Time" := System.CurrentDateTime();
+        CustomTableRec."Document No." := Rec."No.";
+        // CustomTableRec."Clicked Time" := Time;
         CustomTableRec."User ID" := UserId;
         CustomTableRec.Status := Rec.Status;
         CustomTableRec.Insert();

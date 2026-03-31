@@ -13,11 +13,16 @@ table 70001 "Log Table AGT_DG"
         {
 
         }
-        field(3; "Clicked Time"; Time)
+        field(3; "Clicked Date And Time"; DateTime)
         {
 
         }
-        field(4; "Clicked Date"; Date)
+        // field(4; "Clicked Date"; Date)
+        // {
+
+        // }
+
+        field(4; "Document No."; Code[20])
         {
 
         }

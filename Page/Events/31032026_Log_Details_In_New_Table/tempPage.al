@@ -24,14 +24,15 @@ page 70002 "Log Page AGT_DG"
                 {
                     // ApplicationArea = all;
                 }
-                field("Clicked Date"; Rec."Clicked Date")
+                field("Clicked Date And Time"; Rec."Clicked Date And Time")
                 {
                     // ApplicationArea = all;
                 }
-                field("Clicked Time"; Rec."Clicked Time")
-                {
-                    // ApplicationArea = all;
-                }
+                // field("Clicked Time"; Rec."Clicked Time")
+                // {
+                //     // ApplicationArea = all;
+                // }
+                field("Document No."; Rec."Document No.") { }
                 field(Status; Rec.Status)
                 {
                     // ApplicationArea = all;
@@ -41,21 +42,6 @@ page 70002 "Log Page AGT_DG"
         area(Factboxes)
         {
 
-        }
-    }
-
-    actions
-    {
-        area(Processing)
-        {
-            action(ActionName)
-            {
-
-                trigger OnAction()
-                begin
-
-                end;
-            }
         }
     }
 }
