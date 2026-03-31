@@ -1,5 +1,10 @@
 codeunit 70000 MyCodeunit
 {
+    // Task:
+    //     "when a user adds an item to a 
+    // Sales Order, check if quantity is insufficient at the
+    //  selected location.  create and post an Item Journal entry to
+    //  increase inventory."
     [EventSubscriber(ObjectType::page, page::"Sales Order Subform", OnAfterValidateEvent, 'Quantity', true, true)]
     local procedure MyProcedure(var Rec: Record "Sales Line")
     var
