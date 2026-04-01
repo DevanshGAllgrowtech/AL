@@ -4,6 +4,8 @@ codeunit 70002 "Flow Data AGT_DG"
     //     Task 20:
     //     "Add two custom fields to the Item card. After posting a Sales or Purchase order,
     // update these fields with the Unit Price from the posted document lines."
+
+    //The below code will find the MAXIMUM QUANTITY of Items if there exists multiple lines of Same Item.
     [EventSubscriber(ObjectType::Codeunit, codeunit::"Sales-Post", OnAfterPostSalesLines, '', true, true)]
     local procedure flowDataFromSalesLineToItemTable(var TempSalesLineGlobal: Record "Sales Line" temporary)
     var
