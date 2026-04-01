@@ -2,7 +2,6 @@ codeunit 70002 "Flow Data AGT_DG"
 {
 
     //     Task 20:
-
     //     "Add two custom fields to the Item card. After posting a Sales or Purchase order,
     // update these fields with the Unit Price from the posted document lines."
     [EventSubscriber(ObjectType::Codeunit, codeunit::"Sales-Post", OnAfterPostSalesLines, '', true, true)]
@@ -23,7 +22,7 @@ codeunit 70002 "Flow Data AGT_DG"
                     ItemQtyDict.Add(TempSalesLineGlobal."No.", 1);
                     MaxQuantity := TempSalesLineGlobal.Quantity;
                 end;
-                Message('%1', MaxQuantity);
+                // Message('%1', MaxQuantity);
                 if ItemRec.get(TempSalesLineGlobal."No.") then begin
                     ItemRec."SO AGT_DG" := TempSalesLineGlobal.Quantity;
                     ItemRec.Modify();
