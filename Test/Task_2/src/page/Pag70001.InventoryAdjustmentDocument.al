@@ -18,7 +18,7 @@ page 70001 "Inventory Adjustment Document"
                     var
                         myInt: Integer;
                     begin
-                        IsPendingForApproval := false;
+
                         Rec."Requested By" := UserId;
                         Rec."Request Date" := Today;
                     end;
@@ -59,6 +59,7 @@ page 70001 "Inventory Adjustment Document"
         {
             action("Send for Approval")
             {
+                Visible = not IsActionButtnsVisibleToApprover;
                 trigger OnAction()
                 begin
                     IsPendingForApproval := PostingMgtCodeunit.SendForApproval(Rec);
@@ -72,6 +73,9 @@ page 70001 "Inventory Adjustment Document"
                 Visible = IsPendingForApproval;
                 trigger OnAction()
                 begin
+                    if (Rec."Approved By" = UserId) then begin
+                        IsActionButtnsVisibleToApprover := true;
+                    end;
                     PostingMgtCodeunit.ApproveDocument(Rec);
                 end;
             }
@@ -87,6 +91,7 @@ page 70001 "Inventory Adjustment Document"
 
             action("Post Adjustment")
             {
+                Visible = not IsActionButtnsVisibleToApprover;
                 trigger OnAction()
 
                 begin
@@ -96,7 +101,16 @@ page 70001 "Inventory Adjustment Document"
         }
     }
 
+    trigger OnOpenPage()
+    var
+        myInt: Integer;
+    begin
+        IsPendingForApproval := false;
+        IsActionButtnsVisibleToApprover := false;
+    end;
+
     var
         PostingMgtCodeunit: Codeunit "Posting Management";
         IsPendingForApproval: Boolean;
+        IsActionButtnsVisibleToApprover: Boolean;
 }
