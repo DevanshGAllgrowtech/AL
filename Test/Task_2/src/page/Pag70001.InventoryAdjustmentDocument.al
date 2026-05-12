@@ -18,6 +18,7 @@ page 70001 "Inventory Adjustment Document"
                     var
                         myInt: Integer;
                     begin
+                        IsPendingForApproval := false;
                         Rec."Requested By" := UserId;
                         Rec."Request Date" := Today;
                     end;

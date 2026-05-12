@@ -14,7 +14,10 @@ page 70000 "Inventory Adjustment List"
         {
             repeater(Group)
             {
-                field("Adjustment No."; Rec."Adjustment No.") { }
+                field("Adjustment No."; Rec."Adjustment No.")
+                {
+                    DrillDownPageId = "Inventory Adjustment Document";
+                }
                 field("Location Code"; Rec."Location Code") { }
                 field(Status; Rec.Status) { }
                 field("Request Date"; Rec."Request Date") { }
