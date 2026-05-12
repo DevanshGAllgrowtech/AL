@@ -6,7 +6,6 @@ codeunit 70004 "Evaluation Mgt. AGT_DG"
             Error('Weightage cannot be zero.');
 
         VendorEvaluationLine.Validate("Weighted Score", (VendorEvaluationLine.Score * VendorEvaluationLine.Weightage) / 100);
-        VendorEvaluationLine.Modify(true);
     end;
 
     procedure CalculateFinalScore(var VendorEvaluationHeader: Record "Vendor Evaluation Header")
@@ -24,7 +23,6 @@ codeunit 70004 "Evaluation Mgt. AGT_DG"
             until VendorEvaluationLine.Next() = 0;
         VendorEvaluationHeader.Validate("Final Score", TotalScore);
         AssignRating(VendorEvaluationHeader);
-        VendorEvaluationHeader.Modify(true);
 
         OnAfterScoreCalculation(VendorEvaluationHeader);
     end;
@@ -58,7 +56,6 @@ codeunit 70004 "Evaluation Mgt. AGT_DG"
             Error('Cannot complete evaluation without lines.');
 
         VendorEvaluationHeader.Validate(Status, VendorEvaluationHeader.Status::Completed);
-        VendorEvaluationHeader.Modify(true);
 
         OnAfterEvaluationCompleted(VendorEvaluationHeader);
     end;
@@ -66,7 +63,6 @@ codeunit 70004 "Evaluation Mgt. AGT_DG"
     procedure ReopenEvaluation(var VendorEvaluationHeader: Record "Vendor Evaluation Header")
     begin
         VendorEvaluationHeader.Validate(Status, VendorEvaluationHeader.Status::Open);
-        VendorEvaluationHeader.Modify(true);
     end;
 
     [IntegrationEvent(false, false)]
