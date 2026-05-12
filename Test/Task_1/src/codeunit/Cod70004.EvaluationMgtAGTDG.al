@@ -6,6 +6,7 @@ codeunit 70004 "Evaluation Mgt. AGT_DG"
             Error('Weightage cannot be zero.');
 
         VendorEvaluationLine.Validate("Weighted Score", (VendorEvaluationLine.Score * VendorEvaluationLine.Weightage) / 100);
+        VendorEvaluationLine.Modify(true);
     end;
 
     procedure CalculateFinalScore(var VendorEvaluationHeader: Record "Vendor Evaluation Header")
@@ -57,7 +58,9 @@ codeunit 70004 "Evaluation Mgt. AGT_DG"
 
         VendorEvaluationHeader.Validate(Status, VendorEvaluationHeader.Status::Completed);
 
+
         OnAfterEvaluationCompleted(VendorEvaluationHeader);
+        VendorEvaluationHeader.Delete(VendorEvaluationHeader.get(VendorEvaluationHeader."Evaluation No."));
     end;
 
     procedure ReopenEvaluation(var VendorEvaluationHeader: Record "Vendor Evaluation Header")

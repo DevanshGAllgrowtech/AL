@@ -12,8 +12,22 @@ page 70003 "Vendor Evaluation"
         {
             group("General")
             {
-                field("Evaluation No."; Rec."Evaluation No.") { }
-                field("Vendor No."; Rec."Vendor No.") { }
+                field("Evaluation No."; Rec."Evaluation No.")
+                {
+                    ShowMandatory = true;
+                }
+                field("Vendor No."; Rec."Vendor No.")
+                {
+                    TableRelation = Vendor."No.";
+                    trigger OnValidate()
+                    var
+                        VendorRec: Record Vendor;
+                    begin
+                        if (VendorRec.Get(Rec."Vendor No.")) then begin
+                            Rec."Vendor Name" := VendorRec.Name;
+                        end;
+                    end;
+                }
                 field("Vendor Name"; Rec."Vendor Name")
                 {
                     Editable = false;
@@ -84,12 +98,4 @@ page 70003 "Vendor Evaluation"
             }
         }
     }
-
-    trigger OnAfterGetCurrRecord()
-    begin
-        if Rec.Status = Rec.Status::Completed then
-            CurrPage.Editable(false)
-        else
-            CurrPage.Editable(true);
-    end;
 }

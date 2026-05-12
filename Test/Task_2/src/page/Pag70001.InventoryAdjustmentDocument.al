@@ -4,6 +4,7 @@ page 70001 "Inventory Adjustment Document"
     SourceTable = "Inventory Adjustment Header";
     Caption = 'AGT_DG Inventory Adjustment Document';
     ApplicationArea = All;
+    UsageCategory = Lists;
 
     layout
     {
@@ -11,18 +12,42 @@ page 70001 "Inventory Adjustment Document"
         {
             group(General)
             {
-                field("Adjustment No."; Rec."Adjustment No.") { }
+                field("Adjustment No."; Rec."Adjustment No.")
+                {
+                    trigger OnValidate()
+                    var
+                        myInt: Integer;
+                    begin
+                        Rec."Requested By" := UserId;
+                        Rec."Request Date" := Today;
+                    end;
+                }
                 field("Location Code"; Rec."Location Code") { }
                 field("Request Date"; Rec."Request Date") { }
-                field("Requested By"; Rec."Requested By") { }
-                field(Status; Rec.Status) { }
-                field("Approved By"; Rec."Approved By") { }
-                field("Posting Date"; Rec."Posting Date") { }
+                field("Requested By"; Rec."Requested By")
+                {
+                    Editable = false;
+                }
+                field(Status; Rec.Status)
+                {
+                    Editable = false;
+                }
+                field("Approved By"; Rec."Approved By")
+                {
+                    TableRelation = "User Setup"."User ID";
+                    ApplicationArea = All;
+
+                }
+                field("Posting Date"; Rec."Posting Date")
+                {
+                    Editable = false;
+                }
             }
 
             part(Lines; "Inventory Adjustment Line Part")
             {
                 SubPageLink = "Adjustment No." = FIELD("Adjustment No.");
+                Editable = not IsPendingForApproval;
             }
         }
     }
@@ -35,51 +60,42 @@ page 70001 "Inventory Adjustment Document"
             {
                 trigger OnAction()
                 begin
-                    Rec.Validate(Status, Rec.Status::"Pending Approval");
-                    Rec.Modify(true);
+                    IsPendingForApproval := PostingMgtCodeunit.SendForApproval(Rec);
+                    Message('%1', IsPendingForApproval);
+                    CurrPage.Update(true);
                 end;
             }
 
-            action(Approve)
+            action("Approve Document")
             {
+                Visible = IsPendingForApproval;
                 trigger OnAction()
                 begin
-                    if Rec.Status <> Rec.Status::"Pending Approval" then
-                        Error('Cannot approve.');
-
-                    Rec.Validate(Status, Rec.Status::Approved);
-                    Rec.Validate("Approved By", UserId);
-                    Rec.Modify(true);
+                    PostingMgtCodeunit.ApproveDocument(Rec);
                 end;
             }
 
-            action(Reject)
-            {
-                trigger OnAction()
-                begin
-                    Rec.Validate(Status, Rec.Status::Open);
-                    Rec.Modify(true);
-                end;
-            }
+            // action(Reject)
+            // {
+            //     trigger OnAction()
+            //     begin
+            //         Rec.Validate(Status, Rec.Status::Open);
+            //         Rec.Modify(true);
+            //     end;
+            // }
 
             action("Post Adjustment")
             {
                 trigger OnAction()
-                var
-                    Line: Record "Inventory Adjustment Line";
+
                 begin
-                    if Rec.Status <> Rec.Status::Approved then
-                        Error('Only approved documents can be posted.');
-
-                    Line.SetRange("Adjustment No.", Rec."Adjustment No.");
-                    if not Line.FindFirst() then
-                        Error('No lines exist.');
-
-                    Rec.Validate(Status, Rec.Status::Posted);
-                    Rec.Validate("Posting Date", Today);
-                    Rec.Modify(true);
+                    PostingMgtCodeunit.PostAdjustment(Rec);
                 end;
             }
         }
     }
+
+    var
+        PostingMgtCodeunit: Codeunit "Posting Management";
+        IsPendingForApproval: Boolean;
 }

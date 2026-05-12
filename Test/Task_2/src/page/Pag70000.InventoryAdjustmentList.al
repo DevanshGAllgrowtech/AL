@@ -4,6 +4,9 @@ page 70000 "Inventory Adjustment List"
     SourceTable = "Inventory Adjustment Header";
     Caption = 'AGT_DG Inventory Adjustment List';
     ApplicationArea = All;
+    UsageCategory = Lists;
+    Editable = false;
+
 
     layout
     {

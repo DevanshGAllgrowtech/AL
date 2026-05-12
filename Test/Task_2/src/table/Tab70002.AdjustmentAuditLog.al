@@ -13,6 +13,9 @@ table 70002 "Adjustment Audit Log"
 
     keys
     {
-        key(PK; "Entry No.") { Clustered = true; }
+        key(PK; "Entry No.")
+        {
+            Clustered = true;
+        }
     }
 }

@@ -11,6 +11,7 @@ table 70000 "Inventory Adjustment Header"
         field(5; Status; Option)
         {
             OptionMembers = Open,"Pending Approval",Approved,Posted;
+            InitValue = Open;
         }
         field(6; "Approved By"; Code[50]) { }
         field(7; "Posting Date"; Date) { }

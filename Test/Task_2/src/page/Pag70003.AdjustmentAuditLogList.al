@@ -1,9 +1,11 @@
 page 70003 "Adjustment Audit Log List"
 {
     PageType = List;
+    ApplicationArea = All;
     SourceTable = "Adjustment Audit Log";
     Caption = 'AGT_DG Audit Log';
-    ApplicationArea = All;
+
+    UsageCategory = Lists;
 
     layout
     {
