@@ -6,6 +6,7 @@ page 70000 "Inventory Adjustment List"
     ApplicationArea = All;
     UsageCategory = Lists;
     Editable = false;
+    CardPageId = "Inventory Adjustment Document";
 
 
     layout
