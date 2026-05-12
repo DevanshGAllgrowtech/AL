@@ -26,19 +26,4 @@ page 70000 "Vendor Evaluation AGT_Devansh"
             }
         }
     }
-
-    actions
-    {
-        area(Processing)
-        {
-            action(ActionName)
-            {
-
-                trigger OnAction()
-                begin
-
-                end;
-            }
-        }
-    }
 }

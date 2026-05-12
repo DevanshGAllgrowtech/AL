@@ -17,9 +17,32 @@ table 70001 "Vendor Evaluation Line"
         }
         field(3; "Criteria Code"; Code[20]) { }
         field(4; "Criteria Description"; Text[100]) { }
-        field(5; "Score"; Decimal) { }
-        field(6; "Weightage"; Decimal) { }
-        field(7; "Weighted Score"; Decimal) { }
+        field(5; "Score"; Decimal)
+        {
+            trigger OnValidate()
+            begin
+                if Score > 100 then
+                    Error('Score cannot exceed 100.');
+
+                if Score < 0 then
+                    Error('Score cannot be negative.');
+            end;
+        }
+        field(6; "Weightage"; Decimal)
+        {
+            trigger OnValidate()
+            begin
+                if Weightage = 0 then
+                    Error('Weightage cannot be zero.');
+
+                if Weightage < 0 then
+                    Error('Weightage cannot be negative.');
+            end;
+        }
+        field(7; "Weighted Score"; Decimal)
+        {
+            Editable = false;
+        }
     }
 
     keys

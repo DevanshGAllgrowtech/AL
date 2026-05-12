@@ -16,7 +16,10 @@ page 70001 "Vendor Evaluation Line"
                 field("Criteria Description"; Rec."Criteria Description") { }
                 field(Score; Rec.Score) { }
                 field(Weightage; Rec.Weightage) { }
-                field("Weighted Score"; Rec."Weighted Score") { }
+                field("Weighted Score"; Rec."Weighted Score")
+                {
+                    Editable = false;
+                }
             }
         }
     }
